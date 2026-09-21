@@ -1,0 +1,114 @@
+/* Button. Espelha o component set "Button" do Figma:
+   Style = primary | brand | outline | ghost
+   Size  = md (48px) | sm (40px)
+   State = default | hover | disabled */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 48px;
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.btn .icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.btn--sm {
+  height: 40px;
+  padding-inline: var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+.btn--sm .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--icon {
+  width: 48px;
+  padding-inline: 0;
+}
+
+.btn--icon.btn--sm {
+  width: 40px;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Primary: CTA em vermelho */
+.btn--primary {
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-bg-accent-hover);
+}
+
+/* Brand: navy sólido */
+.btn--brand {
+  background: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+.btn--brand:hover:not(:disabled) {
+  background: var(--color-bg-brand-strong);
+}
+
+/* Outline */
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-border-brand);
+  color: var(--color-text-brand);
+}
+.btn--outline:hover:not(:disabled) {
+  background: var(--color-bg-brand-soft);
+}
+
+/* Ghost */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-brand);
+}
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-bg-brand-soft);
+}
+
+/* Disabled: igual para todos os estilos */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  color: var(--color-text-disabled);
+}
+.btn--primary:disabled,
+.btn--brand:disabled {
+  background: var(--color-bg-disabled);
+}
+.btn--outline:disabled {
+  border-color: var(--color-border-default);
+}
+.btn--ghost:disabled {
+  background: transparent;
+}

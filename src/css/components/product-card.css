@@ -1,0 +1,213 @@
+/* Product card. Espelha o set "Product card" do Figma:
+   State = default | hover
+   Availability = available | unavailable */
+
+.product-card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  transition:
+    box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+}
+
+.product-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 8 / 7;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  overflow: hidden;
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.product-card:hover .product-card__media img {
+  transform: scale(1.04);
+}
+
+@media (min-width: 1024px) {
+  .product-card__media {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.product-card__badges {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* cada tag com a largura do próprio texto */
+  gap: var(--space-1);
+  z-index: 1;
+}
+
+.product-card__wishlist {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface);
+  color: var(--color-icon-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+}
+
+.product-card__wishlist .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.product-card__wishlist:hover,
+.product-card__wishlist[aria-pressed="true"] {
+  color: var(--color-icon-accent);
+}
+
+.product-card__wishlist[aria-pressed="true"] .icon {
+  animation: heart-pop var(--duration-base) var(--ease-out);
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1 1 auto;
+}
+
+.product-card__brand {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.product-card__name {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(var(--line-height-md) * 2);
+}
+
+.product-card__name a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--color-text-secondary);
+}
+
+.product-card__rating .stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--color-rating-star);
+}
+
+.product-card__rating .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.product-card__attrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* Bloco de preço. Também usado na página de produto. */
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.price__old {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--color-price-old);
+  text-decoration: line-through;
+}
+
+.price__current {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-price-current);
+}
+
+.price__current .badge {
+  margin-left: var(--space-1);
+  vertical-align: middle;
+}
+
+.price__installments {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--color-text-secondary);
+}
+
+.price__pix {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-success);
+}
+
+.product-card__cta {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+/* Indisponível */
+.product-card--unavailable .product-card__media img {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.product-card--unavailable .price__current {
+  color: var(--color-text-secondary);
+}

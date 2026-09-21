@@ -1,0 +1,18 @@
+# Sistema
+.DS_Store
+__pycache__/
+*.pyc
+
+# Segredos e material interno do cliente (nunca versionar)
+chave-open-ai.rtf
+*.rtf
+*.pdf
+palmas/
+
+# Ferramentas internas: o repositório contém só o protótipo (src/ e assets/)
+scripts/
+tokens/
+STATUS.md
+
+# Deploy local
+.vercel/

@@ -1,0 +1,208 @@
+/* Input, Select, Checkbox, Radio. Espelha o set "Input" do Figma:
+   State = default | filled | focus | error | disabled */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 48px;
+  padding-inline: var(--space-4);
+  background: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.field__control .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-icon-secondary);
+  flex: 0 0 auto;
+}
+
+.field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  color: var(--color-text-primary);
+}
+
+.field__input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.field__control:focus-within {
+  border-color: var(--color-border-focus);
+  border-width: 2px;
+  box-shadow: var(--shadow-focus);
+}
+
+.field__input:focus-visible {
+  box-shadow: none;
+}
+
+.field--error .field__control {
+  border-color: var(--color-feedback-error);
+  border-width: 2px;
+}
+
+.field--error .field__helper {
+  color: var(--color-text-accent);
+}
+
+.field--disabled .field__label,
+.field--disabled .field__helper {
+  color: var(--color-text-disabled);
+}
+
+.field--disabled .field__control {
+  background: var(--color-bg-disabled);
+  border-color: var(--color-border-default);
+}
+
+.field--disabled .field__input {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.field__helper {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Select nativo estilizado */
+.field__control select {
+  appearance: none;
+  padding-right: var(--space-5);
+}
+
+.field__control--select::after {
+  content: "";
+  position: absolute;
+  right: var(--space-4);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  background: currentColor;
+  mask: url("../../../assets/icons/chevron-down.svg") center / contain no-repeat;
+  color: var(--color-icon-secondary);
+}
+
+/* Checkbox e radio */
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 24px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+.check input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-surface);
+  display: grid;
+  place-content: center;
+  transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+
+.check input[type="radio"] {
+  border-radius: var(--radius-full);
+}
+
+.check input::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  transform: scale(0);
+  transition: transform var(--duration-fast) var(--ease-out);
+  background: var(--color-icon-on-brand);
+  mask: url("../../../assets/icons/check.svg") center / contain no-repeat;
+}
+
+.check input[type="radio"]::before {
+  width: 8px;
+  height: 8px;
+  mask: none;
+  border-radius: var(--radius-full);
+}
+
+.check input:checked {
+  background: var(--color-bg-brand);
+  border-color: var(--color-border-brand);
+}
+
+.check input:checked::before {
+  transform: scale(1);
+}
+
+.check:hover input:not(:checked) {
+  border-color: var(--color-border-brand);
+}
+
+/* Badge. Espelha o set "Badge" do Figma. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.badge--offer,
+.badge--discount {
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+
+.badge--shipping {
+  background: var(--color-feedback-success-soft);
+  color: var(--color-text-success);
+}
+
+.badge--new {
+  background: var(--color-bg-brand-soft);
+  color: var(--color-text-brand);
+}
+
+.badge--unavailable {
+  background: var(--color-bg-muted);
+  color: var(--color-text-secondary);
+}
+
+.badge--neutral {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
