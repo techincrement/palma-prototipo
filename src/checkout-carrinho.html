@@ -77,12 +77,18 @@
   <div class="cart-row__controls"><div class="qty" data-qty><button type="button" data-minus aria-label="Diminuir"><svg class="icon" aria-hidden="true"><use href="#i-minus"></use></svg></button><input type="text" value="2" aria-label="Quantidade" inputmode="numeric"><button type="button" data-plus aria-label="Aumentar"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg></button></div><div><span class="cart-row__price">R$ 479,80</span><br><span class="cart-row__unit">R$ 239,90 cada</span></div></div></div><div class="cart-row"><div class="cart-row__media"><img src="../assets/products/esab-mascara-solda-swarm-a20.jpg" alt=""></div>
   <div class="cart-row__body"><p class="cart-row__name">Máscara de Solda Escurecimento Automático ESAB Swarm A20 Tonalidade 9 a 13</p><span class="cart-row__meta">Cód. 0747671</span><a class="cart-row__remove" href="#" data-toast="Item removido"><svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg> Remover</a></div>
   <div class="cart-row__controls"><div class="qty" data-qty><button type="button" data-minus aria-label="Diminuir"><svg class="icon" aria-hidden="true"><use href="#i-minus"></use></svg></button><input type="text" value="1" aria-label="Quantidade" inputmode="numeric"><button type="button" data-plus aria-label="Aumentar"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg></button></div><div><span class="cart-row__price">R$ 364,00</span><br><span class="cart-row__unit">R$ 364,00 cada</span></div></div></div></div>
-      <div class="card"><h2 class="card__title"><svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg> Entrega</h2><p class="card__text" style="margin-bottom:var(--space-3)">Calcule o frete ou escolha retirar em uma loja.</p>
+      <div class="card"><h2 class="card__title"><svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg> Entrega</h2><p class="card__text" style="margin-bottom:var(--space-3)">Escolha como quer receber o pedido.</p>
+        <div class="ship-tabs" role="tablist"><button class="ship-tab is-active" type="button" role="tab" aria-selected="true" data-ship-tab="entrega"><svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg> Entrega</button><button class="ship-tab" type="button" role="tab" aria-selected="false" data-ship-tab="retirada"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg> Retirada</button></div>
         <form class="shipping__form" data-shipping style="margin-bottom:var(--space-3)"><div class="field"><label class="sr-only" for="cep-cart">CEP</label><div class="field__control"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg><input class="field__input" id="cep-cart" type="text" placeholder="Digite seu CEP" value="54325-000" inputmode="numeric"></div></div><button class="btn btn--brand" type="submit">Calcular</button></form>
-        <div class="pay-methods" data-shipping-result>
-          <label class="delivery-option is-active" data-delivery-option><input type="radio" name="entrega" checked class="sr-only"><div><strong>Retirar na loja Prazeres (Matriz)</strong><span>Pronto em até 2 horas úteis</span></div><em>Grátis</em></label>
-          <label class="delivery-option" data-delivery-option><input type="radio" name="entrega" class="sr-only"><div><strong>Entrega padrão</strong><span>Até 2 dias úteis para Jaboatão dos Guararapes</span></div><em>Grátis</em></label>
+        <div class="pay-methods" data-ship-panel="entrega" data-shipping-result>
+          <label class="delivery-option is-active" data-delivery-option><input type="radio" name="entrega" checked class="sr-only"><div><strong>Entrega padrão</strong><span>Até 2 dias úteis para Jaboatão dos Guararapes</span></div><em>Grátis</em></label>
           <label class="delivery-option" data-delivery-option><input type="radio" name="entrega" class="sr-only"><div><strong>Entrega expressa</strong><span>Até 1 dia útil</span></div><em style="color:var(--color-text-primary)">R$ 29,90</em></label>
+        </div>
+        <div class="pay-methods" data-ship-panel="retirada" hidden>
+          <p class="card__text">Lojas com retirada disponível para os itens do seu pedido.</p>
+          <label class="delivery-option is-active" data-delivery-option><input type="radio" name="retirada" checked class="sr-only"><div><strong>Retirar na loja Prazeres (Matriz)</strong><span>Av. Dr. Júlio Maranhão, 2739, Jaboatão dos Guararapes · Pronto em até 2 horas úteis</span></div><em>Grátis</em></label>
+          <label class="delivery-option" data-delivery-option><input type="radio" name="retirada" class="sr-only"><div><strong>Retirar na loja Imbiribeira</strong><span>Av. Mal. Mascarenhas de Morais, 3175, Recife · Pronto em até 2 horas úteis</span></div><em>Grátis</em></label>
+          <label class="delivery-option" data-delivery-option><input type="radio" name="retirada" class="sr-only"><div><strong>Retirar na loja Cabo</strong><span>PE-060, 1459, Cabo de Santo Agostinho · Pronto em até 1 dia útil</span></div><em>Grátis</em></label>
         </div></div>
     </div>
     <div class="checkout__side">
@@ -94,6 +100,7 @@
     <div class="summary__row"><span>Desconto Pix (5%)</span><span style="color:var(--color-text-success)">- R$ 94,44</span></div>
     <div class="summary__row summary__row--total"><span>Total</span><span>R$ 1.794,36</span></div>
     <span class="summary__hint">ou R$ 1.888,80 em até 10x sem juros no cartão</span>
+    <span class="summary__hint summary__hint--savings">Você está economizando R$ 267,10</span>
   </div>
   <a class="btn btn--primary btn--block" href="checkout-identificacao.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg> Ir para identificação</a><a class="btn btn--outline btn--block" href="categoria.html">Continuar comprando</a>
 </div>

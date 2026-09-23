@@ -165,5 +165,6 @@
 .text-overline { font-size: var(--font-size-xs); line-height: var(--line-height-xs); font-weight: var(--font-weight-semibold); letter-spacing: 0.06em; text-transform: uppercase; }
 .text-price-lg { font-size: var(--font-size-3xl); line-height: var(--line-height-3xl); font-weight: var(--font-weight-bold); letter-spacing: -0.01em; }
 .text-price { font-size: var(--font-size-xl); line-height: var(--line-height-xl); font-weight: var(--font-weight-bold); }
+.text-price-sm { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-bold); }
 .text-button { font-size: var(--font-size-md); line-height: var(--line-height-md); font-weight: var(--font-weight-semibold); }
 .text-button-sm { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }

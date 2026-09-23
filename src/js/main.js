@@ -80,13 +80,25 @@
       const items = $$("[data-cart-item]", this.list);
       let units = 0;
       let subtotal = 0;
+      let savings = 0;
       items.forEach((it) => {
         const qty = parseInt($("input", it).value, 10) || 1;
         const price = parseFloat($("[data-price]", it).dataset.price);
         $("[data-price]", it).textContent = brl(price * qty);
+        const old = $("[data-price-old]", it);
+        if (old) {
+          const oldPrice = parseFloat(old.dataset.priceOld);
+          old.textContent = brl(oldPrice * qty);
+          savings += (oldPrice - price) * qty;
+        }
         units += qty;
         subtotal += price * qty;
       });
+      const sav = $("[data-cart-savings]");
+      if (sav) {
+        sav.hidden = savings <= 0;
+        $("[data-cart-savings-value]", sav).textContent = brl(savings);
+      }
       $$("[data-cart-count]").forEach((el) => (el.textContent = items.length));
       const label = $("[data-cart-items-label]");
       if (label) label.textContent = items.length + (items.length === 1 ? " item" : " itens");
@@ -164,6 +176,9 @@
       const price = parseFloat(
         $(".price__current", card).textContent.replace(/[^\d,]/g, "").replace(",", ".")
       );
+      const oldEl = $(".price__old", card);
+      const oldPrice = oldEl ? parseFloat(oldEl.textContent.replace(/[^\d,]/g, "").replace(",", ".")) : NaN;
+      const oldHtml = oldPrice > price ? '<span class="cart-item__old" data-price-old="' + oldPrice + '">' + brl(oldPrice) + "</span>" : "";
       const el = document.createElement("div");
       el.className = "cart-item";
       el.setAttribute("data-cart-item", "");
@@ -172,7 +187,7 @@
         '<div class="cart-item__body"><p class="cart-item__name">' + name + "</p>" +
         '<span class="cart-item__meta">Adicionado agora</span>' +
         '<div class="cart-item__row"><div class="qty"><button type="button" data-qty="-1" aria-label="Diminuir"><svg class="icon"><use href="#i-minus"></use></svg></button><input type="text" value="1" inputmode="numeric" aria-label="Quantidade"><button type="button" data-qty="1" aria-label="Aumentar"><svg class="icon"><use href="#i-plus"></use></svg></button></div>' +
-        '<div style="display:flex;align-items:center;gap:8px"><span class="cart-item__price" data-price="' + price + '">' + brl(price) + '</span><button class="cart-item__remove" type="button" data-remove aria-label="Remover"><svg class="icon"><use href="#i-trash"></use></svg></button></div></div></div>';
+        '<div class="cart-item__right"><div class="cart-item__prices">' + oldHtml + '<span class="cart-item__price" data-price="' + price + '">' + brl(price) + '</span></div><button class="cart-item__remove" type="button" data-remove aria-label="Remover"><svg class="icon"><use href="#i-trash"></use></svg></button></div></div></div>';
       cart.list.prepend(el);
       cart.refresh();
     }
@@ -294,6 +309,26 @@
     const open = sub.classList.toggle("is-open");
     const use = $("use", t);
     if (use) use.setAttribute("href", open ? "#i-chevron-up" : "#i-chevron-down");
+  });
+
+  /* ---------- Checkout: abas Entrega / Retirada e seleção de opção ---------- */
+  document.addEventListener("click", (e) => {
+    const tab = e.target.closest("[data-ship-tab]");
+    if (tab) {
+      const card = tab.closest(".card");
+      $$("[data-ship-tab]", card).forEach((b) => {
+        const on = b === tab;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      $$("[data-ship-panel]", card).forEach((p) => (p.hidden = p.dataset.shipPanel !== tab.dataset.shipTab));
+      return;
+    }
+    const opt = e.target.closest("[data-delivery-option]");
+    if (opt) {
+      const list = opt.parentElement;
+      $$("[data-delivery-option]", list).forEach((o) => o.classList.toggle("is-active", o === opt));
+    }
   });
 
   /* ---------- Newsletter ---------- */

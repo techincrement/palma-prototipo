@@ -178,9 +178,41 @@
   color: var(--color-price-current);
 }
 
-.price__current .badge {
-  margin-left: var(--space-1);
-  vertical-align: middle;
+.price__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.price__row .price__current {
+  white-space: nowrap;
+}
+
+.price__seal {
+  height: 20px;
+  padding-inline: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  /* Card mobile (139px úteis): preço menor e selo compacto para ficarem sempre lado a lado. */
+  .product-card .price__row {
+    flex-wrap: nowrap;
+    gap: var(--space-1);
+  }
+
+  .product-card .price__current {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+  }
+
+  .product-card .price__seal {
+    height: 18px;
+    padding-inline: 4px;
+    font-size: 11px;
+    line-height: 14px;
+  }
 }
 
 .price__installments {

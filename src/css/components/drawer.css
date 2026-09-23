@@ -168,8 +168,29 @@
   gap: var(--space-2);
 }
 
+.cart-item__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cart-item__prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.cart-item__old {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--color-price-old);
+  text-decoration: line-through;
+}
+
 .cart-item__price {
   font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
   font-weight: var(--font-weight-bold);
   color: var(--color-price-current);
 }
@@ -270,6 +291,19 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-success);
   font-weight: var(--font-weight-semibold);
+}
+
+.summary__hint strong {
+  font-weight: inherit;
+}
+
+.summary__hint--savings {
+  display: block;
+  line-height: var(--line-height-xs);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-feedback-success);
+  color: var(--color-text-on-brand);
 }
 
 /* Frete grátis: barra de progresso */
